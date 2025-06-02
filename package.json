@@ -1,0 +1,39 @@
+{
+	"name": "@daveyplate/tsx-package-fumadocs",
+	"homepage": "https://github.com/daveyplate/tsx-package-fumadocs",
+	"version": "0.0.1",
+	"description": "TSX Package + Fumadocs",
+	"module": "dist/index",
+	"types": "dist/index",
+	"exports": "./dist/index.js",
+	"files": ["src", "dist"],
+	"scripts": {
+		"build": "tsup --clean --dts",
+		"dev": "tsc-watch --onSuccess 'biome check --fix'",
+		"prepublishOnly": "rm -rf dist && tsup --clean --dts"
+	},
+	"keywords": ["typescript"],
+	"author": "daveycodez",
+	"license": "MIT",
+	"devDependencies": {
+		"@types/node": "^22.15.29",
+		"@types/react": "^19.1.6",
+		"@types/react-dom": "^19.1.5",
+		"esbuild-plugin-preserve-directives": "^0.0.11",
+		"react": "^19.1.0",
+		"react-dom": "^19.1.0",
+		"tsc-watch": "^7.1.1",
+		"tsup": "^8.5.0",
+		"tsx": "^4.19.4",
+		"turbo": "^2.5.4",
+		"typescript": "^5.8.3"
+	},
+	"peerDependencies": {
+		"react": ">=18.0.0",
+		"react-dom": ">=18.0.0"
+	},
+	"packageManager": "pnpm@10.8.1",
+	"dependencies": {
+		"@biomejs/biome": "^1.9.4"
+	}
+}

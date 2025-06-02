@@ -1,8 +1,9 @@
 import type { Session, User } from "better-auth"
 import SuperJSON from "superjson"
-import type { AnyAuthClient } from "@/types/any-auth-client"
 import { $authClient } from "./auth-client-store"
 import { $persistentSession } from "./persistent-session"
+import type { AnyAuthClient } from "./types/any-auth-client"
+import type { AuthClient } from "./types/auth-client"
 
 type SessionData = { session: Session; user: User }
 
@@ -63,8 +64,7 @@ export function subscribePersistSession(authClient: AnyAuthClient) {
 	const checkActiveSession = () => {
 		const persistentSession = $persistentSession.get()
 		if (persistentSession.optimistic && persistentSession.data) {
-			// biome-ignore lint/suspicious/noExplicitAny: ignore
-			;(authClient as any).multiSession.setActive({
+			;(authClient as AuthClient).multiSession.setActive({
 				sessionToken: persistentSession.data.session.token
 			})
 		}

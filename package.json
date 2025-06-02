@@ -1,8 +1,8 @@
 {
-	"name": "@daveyplate/tsx-package-fumadocs",
-	"homepage": "https://github.com/daveyplate/tsx-package-fumadocs",
+	"name": "@daveyplate/better-auth-persistent",
+	"homepage": "https://github.com/daveyplate/better-auth-persistent",
 	"version": "0.0.1",
-	"description": "TSX Package + Fumadocs",
+	"description": "Persistent session management for Better Auth",
 	"module": "dist/index",
 	"types": "dist/index",
 	"exports": "./dist/index.js",
@@ -12,7 +12,13 @@
 		"dev": "tsc-watch --onSuccess 'biome check --fix'",
 		"prepublishOnly": "rm -rf dist && tsup --clean --dts"
 	},
-	"keywords": ["typescript"],
+	"keywords": [
+		"typescript",
+		"better-auth",
+		"authentication",
+		"session",
+		"persistent"
+	],
 	"author": "daveycodez",
 	"license": "MIT",
 	"devDependencies": {
@@ -26,14 +32,20 @@
 		"tsup": "^8.5.0",
 		"tsx": "^4.19.4",
 		"turbo": "^2.5.4",
-		"typescript": "^5.8.3"
+		"typescript": "^5.8.3",
+		"better-auth": "^1.2.8"
 	},
 	"peerDependencies": {
 		"react": ">=18.0.0",
-		"react-dom": ">=18.0.0"
+		"react-dom": ">=18.0.0",
+		"better-auth": ">=1.2.8"
 	},
 	"packageManager": "pnpm@10.8.1",
 	"dependencies": {
-		"@biomejs/biome": "^1.9.4"
+		"@biomejs/biome": "^1.9.4",
+		"nanostores": "^0.11.3",
+		"@nanostores/persistent": "^0.10.2",
+		"@nanostores/react": "^0.7.3",
+		"superjson": "^2.2.1"
 	}
 }

@@ -4,9 +4,11 @@ import { computed, task } from "nanostores"
 import SuperJSON from "superjson"
 import { $authClient } from "./auth-client-store"
 import { $persistentSession } from "./persistent-session"
+import type { AuthClient } from "./types/auth-client"
 
+type DeviceSession = { session: Session; user: User }
 type DeviceSessionsResult = {
-	data: { session: Session; user: User }[] | null
+	data: DeviceSession[] | null
 	isPending: boolean
 	error: Error | null
 }
@@ -36,11 +38,11 @@ export const $freshSessions = computed(
 			if (!persistentSession.data) return emptyResponse
 
 			try {
-				const deviceSessions =
-					await // biome-ignore lint/suspicious/noExplicitAny: Any
-					(authClient as any).multiSession.listDeviceSessions({
-						fetchOptions: { throw: true }
-					})
+				const deviceSessions = await (
+					authClient as AuthClient
+				).multiSession.listDeviceSessions({
+					fetchOptions: { throw: true }
+				})
 
 				return {
 					data: deviceSessions,

@@ -1,6 +1,6 @@
-import { authClient } from "@/lib/auth-client"
 import { $deviceSessions } from "./device-sessions"
 import { $persistentSession } from "./persistent-session"
+import { authClient } from "./types/auth-client"
 
 export async function setActiveSession({
 	sessionToken

@@ -3,48 +3,48 @@ import { $persistentSession } from "./persistent-session"
 import { authClient } from "./types/auth-client"
 
 export async function setActiveSession({
-	sessionToken
+    sessionToken
 }: {
-	sessionToken: string
+    sessionToken: string
 }) {
-	const deviceSessions = $deviceSessions.get()
+    const deviceSessions = $deviceSessions.get()
 
-	if (!deviceSessions.data) return
+    if (!deviceSessions.data) return
 
-	const session = deviceSessions.data.find(
-		(session) => session.session.token === sessionToken
-	)
+    const session = deviceSessions.data.find(
+        (session) => session.session.token === sessionToken
+    )
 
-	if (!session)
-		throw {
-			error: {
-				message: "Invalid session token",
-				code: "INVALID_SESSION_TOKEN"
-			}
-		}
+    if (!session)
+        throw {
+            error: {
+                message: "Invalid session token",
+                code: "INVALID_SESSION_TOKEN"
+            }
+        }
 
-	$persistentSession.set({
-		data: session,
-		isPending: false,
-		isRefetching: false,
-		error: null,
-		refetch: undefined
-	})
+    $persistentSession.set({
+        data: session,
+        isPending: false,
+        isRefetching: false,
+        error: null,
+        refetch: undefined
+    })
 
-	authClient.multiSession
-		.setActive({
-			sessionToken: session.session.token
-		})
-		.then(({ error }) => {
-			if (error) {
-				$persistentSession.set({
-					data: session,
-					isPending: false,
-					isRefetching: false,
-					optimistic: true,
-					error: null,
-					refetch: undefined
-				})
-			}
-		})
+    authClient.multiSession
+        .setActive({
+            sessionToken: session.session.token
+        })
+        .then(({ error }) => {
+            if (error) {
+                $persistentSession.set({
+                    data: session,
+                    isPending: false,
+                    isRefetching: false,
+                    optimistic: true,
+                    error: null,
+                    refetch: undefined
+                })
+            }
+        })
 }

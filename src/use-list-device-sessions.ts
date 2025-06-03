@@ -3,8 +3,8 @@ import { $deviceSessions, emptyResponse } from "./device-sessions"
 import { useIsHydrated } from "./hooks/use-hydrated"
 
 export function useListDeviceSessions() {
-	const isHydrated = useIsHydrated()
-	const result = useStore($deviceSessions)
+    const isHydrated = useIsHydrated()
+    const result = useStore($deviceSessions)
 
-	return isHydrated ? result : emptyResponse
+    return isHydrated ? result : emptyResponse
 }

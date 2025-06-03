@@ -1,40 +1,40 @@
 {
-	"name": "fumadocs",
-	"version": "0.0.0",
-	"private": true,
-	"scripts": {
-		"build": "next build",
-		"dev": "next dev --turbo",
-		"start": "next start",
-		"postinstall": "fumadocs-mdx",
-		"check-types": "tsc --noEmit"
-	},
-	"dependencies": {
-		"fumadocs-core": "15.5.0",
-		"fumadocs-docgen": "^2.0.0",
-		"fumadocs-mdx": "11.6.6",
-		"fumadocs-typescript": "^4.0.5",
-		"fumadocs-ui": "15.5.0",
-		"geist": "^1.4.2",
-		"lucide-react": "^0.511.0",
-		"next": "15.3.3",
-		"react": "^19.1.0",
-		"react-dom": "^19.1.0",
-		"shiki": "^3.4.2",
-		"ts-morph": "^26.0.0"
-	},
-	"devDependencies": {
-		"@biomejs/biome": "1.9.4",
-		"@tailwindcss/postcss": "^4.1.8",
-		"@types/mdx": "^2.0.13",
-		"@types/node": "22.15.29",
-		"@types/react": "^19.1.6",
-		"@types/react-dom": "^19.1.5",
-		"postcss": "^8.5.4",
-		"remark-code-import": "^1.2.0",
-		"tailwindcss": "^4.1.8",
-		"turbo": "^2.5.4",
-		"typescript": "^5.8.3"
-	},
-	"packageManager": "pnpm@10.1.0"
+    "name": "fumadocs",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+        "build": "next build",
+        "dev": "next dev --turbo",
+        "start": "next start",
+        "postinstall": "fumadocs-mdx",
+        "check-types": "tsc --noEmit"
+    },
+    "dependencies": {
+        "fumadocs-core": "15.5.0",
+        "fumadocs-docgen": "^2.0.0",
+        "fumadocs-mdx": "11.6.6",
+        "fumadocs-typescript": "^4.0.5",
+        "fumadocs-ui": "15.5.0",
+        "geist": "^1.4.2",
+        "lucide-react": "^0.511.0",
+        "next": "15.3.3",
+        "react": "^19.1.0",
+        "react-dom": "^19.1.0",
+        "shiki": "^3.4.2",
+        "ts-morph": "^26.0.0"
+    },
+    "devDependencies": {
+        "@biomejs/biome": "1.9.4",
+        "@tailwindcss/postcss": "^4.1.8",
+        "@types/mdx": "^2.0.13",
+        "@types/node": "22.15.29",
+        "@types/react": "^19.1.6",
+        "@types/react-dom": "^19.1.5",
+        "postcss": "^8.5.4",
+        "remark-code-import": "^1.2.0",
+        "tailwindcss": "^4.1.8",
+        "turbo": "^2.5.4",
+        "typescript": "^5.8.3"
+    },
+    "packageManager": "pnpm@10.1.0"
 }

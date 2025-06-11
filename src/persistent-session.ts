@@ -1,3 +1,4 @@
+import type { BetterFetchError } from "@better-fetch/fetch"
 import { persistentAtom } from "@nanostores/persistent"
 import type { Session, User } from "better-auth"
 import SuperJSON from "superjson"
@@ -7,7 +8,7 @@ type PersistentSessionResult = {
     isPending: boolean
     isRefetching: boolean
     optimistic?: boolean
-    error: Error | null
+    error: BetterFetchError | null
     refetch: undefined
 }
 

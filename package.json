@@ -22,9 +22,11 @@
     "author": "daveycodez",
     "license": "MIT",
     "devDependencies": {
+        "@better-fetch/fetch": "^1.1.18",
         "@types/node": "^22.15.29",
         "@types/react": "^19.1.6",
         "@types/react-dom": "^19.1.5",
+        "better-auth": "^1.2.8",
         "esbuild-plugin-preserve-directives": "^0.0.11",
         "react": "^19.1.0",
         "react-dom": "^19.1.0",
@@ -32,20 +34,20 @@
         "tsup": "^8.5.0",
         "tsx": "^4.19.4",
         "turbo": "^2.5.4",
-        "typescript": "^5.8.3",
-        "better-auth": "^1.2.8"
+        "typescript": "^5.8.3"
     },
     "peerDependencies": {
+        "@better-fetch/fetch": ">=1.1.18",
+        "better-auth": ">=1.2.8",
         "react": ">=18.0.0",
-        "react-dom": ">=18.0.0",
-        "better-auth": ">=1.2.8"
+        "react-dom": ">=18.0.0"
     },
     "packageManager": "pnpm@10.8.1",
     "dependencies": {
         "@biomejs/biome": "^1.9.4",
-        "nanostores": "^0.11.3",
         "@nanostores/persistent": "^0.10.2",
         "@nanostores/react": "^0.7.3",
+        "nanostores": "^0.11.3",
         "superjson": "^2.2.1"
     }
 }

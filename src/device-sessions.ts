@@ -1,3 +1,4 @@
+import type { BetterFetchError } from "@better-fetch/fetch"
 import { persistentAtom } from "@nanostores/persistent"
 import type { Session, User } from "better-auth"
 import { computed, task } from "nanostores"
@@ -10,7 +11,7 @@ type DeviceSession = { session: Session; user: User }
 type DeviceSessionsResult = {
     data: DeviceSession[] | null
     isPending: boolean
-    error: Error | null
+    error: BetterFetchError | null
 }
 
 export const emptyResponse = {
@@ -56,7 +57,7 @@ export const $freshSessions = computed(
                     data: null,
                     isPending: false,
                     isRefetching: false,
-                    error: error as Error,
+                    error: error as BetterFetchError,
                     refetch: undefined
                 }
             }

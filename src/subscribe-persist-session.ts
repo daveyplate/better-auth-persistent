@@ -40,12 +40,6 @@ export function subscribePersistSession(authClient: AnyAuthClient) {
             !sessionData ||
             persistentSessionData.user.id !== sessionData.user.id
         ) {
-            if (sessionData) {
-                console.log("set active session", {
-                    sessionToken: persistentSessionData.session.token
-                })
-            }
-
             authClient.$store.atoms.session.set({
                 ...persistentValue,
                 refetch: value?.refetch

@@ -40,7 +40,6 @@ export const $persistentSession = persistentAtom<PersistentSessionResult>(
                 if (result.error) {
                     $persistentSession.set({
                         ...$persistentSession.get(),
-                        data: null,
                         isRefetching: false,
                         isPending: false,
                         error: result.error
@@ -48,6 +47,7 @@ export const $persistentSession = persistentAtom<PersistentSessionResult>(
                 } else {
                     $persistentSession.set({
                         ...$persistentSession.get(),
+                        optimistic: false,
                         data: result.data,
                         isRefetching: false,
                         isPending: false,

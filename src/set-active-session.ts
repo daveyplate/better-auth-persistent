@@ -23,13 +23,20 @@ export async function setActiveSession({
 
     $persistentSession.set({
         ...$persistentSession.get(),
+        optimistic: true,
         data: session,
         isPending: false,
         isRefetching: false,
         error: null
     })
 
-    authClient.multiSession.setActive({
-        sessionToken: session.session.token
-    })
+    authClient.multiSession
+        .setActive({
+            sessionToken: session.session.token
+        })
+        .then((result) => {
+            if (result.error) return
+
+            $persistentSession.get().refetch()
+        })
 }

@@ -26,16 +26,16 @@
     "license": "MIT",
     "devDependencies": {
         "@better-fetch/fetch": "^1.1.18",
-        "@types/node": "^22.15.29",
-        "@types/react": "^19.1.6",
-        "@types/react-dom": "^19.1.5",
-        "better-auth": "^1.2.8",
+        "@types/node": "^24.0.13",
+        "@types/react": "^19.1.8",
+        "@types/react-dom": "^19.1.6",
+        "better-auth": "^1.2.12",
         "esbuild-plugin-preserve-directives": "^0.0.11",
         "react": "^19.1.0",
         "react-dom": "^19.1.0",
         "tsc-watch": "^7.1.1",
         "tsup": "^8.5.0",
-        "tsx": "^4.19.4",
+        "tsx": "^4.20.3",
         "turbo": "^2.5.4",
         "typescript": "^5.8.3"
     },
@@ -47,10 +47,10 @@
     },
     "packageManager": "pnpm@10.8.1",
     "dependencies": {
-        "@biomejs/biome": "^1.9.4",
-        "@nanostores/persistent": "^0.10.2",
-        "@nanostores/react": "^0.7.3",
-        "nanostores": "^0.11.3",
-        "superjson": "^2.2.1"
+        "@biomejs/biome": "^2.1.1",
+        "@nanostores/persistent": "^1.1.0",
+        "@nanostores/react": "^1.0.0",
+        "nanostores": "^1.0.1",
+        "superjson": "^2.2.2"
     }
 }

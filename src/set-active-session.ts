@@ -1,5 +1,5 @@
-import { $deviceSessions } from "./device-sessions"
-import { $persistentSession } from "./persistent-session"
+import { $deviceSessions } from "./stores/device-sessions"
+import { $persistentSession } from "./stores/persistent-session"
 import { authClient } from "./types/auth-client"
 
 export async function setActiveSession({
@@ -24,27 +24,14 @@ export async function setActiveSession({
         }
 
     $persistentSession.set({
+        ...$persistentSession.get(),
         data: session,
         isPending: false,
         isRefetching: false,
-        error: null,
-        refetch: undefined
+        error: null
     })
 
-    authClient.multiSession
-        .setActive({
-            sessionToken: session.session.token
-        })
-        .then(({ error }) => {
-            if (error) {
-                $persistentSession.set({
-                    data: session,
-                    isPending: false,
-                    isRefetching: false,
-                    optimistic: true,
-                    error: null,
-                    refetch: undefined
-                })
-            }
-        })
+    authClient.multiSession.setActive({
+        sessionToken: session.session.token
+    })
 }

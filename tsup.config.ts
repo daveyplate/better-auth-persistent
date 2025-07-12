@@ -1,7 +1,7 @@
 import { preserveDirectivesPlugin } from "esbuild-plugin-preserve-directives"
 import { defineConfig } from "tsup"
 
-export default defineConfig((env) => {
+export default defineConfig(() => {
     return {
         entry: {
             index: "./src/index.ts"

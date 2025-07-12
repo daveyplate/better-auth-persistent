@@ -105,11 +105,11 @@ For non-React environments or advanced use cases, you can directly access the st
 import { 
   $persistentSession,
   $deviceSessions,
-  subscribePersistSession 
+  initPersistSession 
 } from "@daveyplate/better-auth-persistent"
 
 // Subscribe to session persistence
-const unsubscribe = subscribePersistSession(authClient)
+const unsubscribe = initPersistSession(authClient)
 
 // Access current session
 const currentSession = $persistentSession.get()
@@ -142,7 +142,7 @@ Switch to a different active session.
 
 - `sessionToken` - The token of the session to activate
 
-#### `subscribePersistSession(authClient)`
+#### `initPersistSession(authClient)`
 Manually subscribe to session persistence (for non-React usage).
 
 Returns an unsubscribe function.

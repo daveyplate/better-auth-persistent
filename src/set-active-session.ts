@@ -21,8 +21,10 @@ export async function setActiveSession({
             }
         }
 
+    const persistentSession = $persistentSession.get()
+
     $persistentSession.set({
-        ...$persistentSession.get(),
+        ...persistentSession,
         optimistic: true,
         data: session,
         isPending: false,
@@ -30,13 +32,9 @@ export async function setActiveSession({
         error: null
     })
 
-    authClient.multiSession
-        .setActive({
-            sessionToken: session.session.token
-        })
-        .then((result) => {
-            if (result.error) return
+    authClient.multiSession.setActive({ sessionToken }).then((result) => {
+        if (result.error) return
 
-            $persistentSession.get().refetch()
-        })
+        persistentSession.refetch()
+    })
 }

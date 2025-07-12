@@ -9,5 +9,7 @@ export function initPersistSession(authClient: AnyAuthClient) {
     $authClient.set(authClient as AuthClient)
     const sessionResult = $persistentSession.get()
 
-    if (sessionResult.data) sessionResult.refetch()
+    if (!sessionResult.data) return
+
+    sessionResult.refetch()
 }

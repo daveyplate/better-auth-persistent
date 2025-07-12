@@ -3,41 +3,42 @@ import { $deviceSessions } from "./stores/device-sessions"
 import { $persistentSession } from "./stores/persistent-session"
 
 export function subscribeDeviceSessions() {
-    const unsubscribe = $persistentSession.subscribe((persistentSession) => {
-        if (
-            persistentSession.isPending ||
-            persistentSession.isRefetching ||
-            persistentSession.optimistic
-        )
-            return
+    const unsubscribe = $persistentSession.subscribe(
+        ({ isPending, isRefetching, optimistic, data }) => {
+            if (isPending || isRefetching || optimistic) return
 
-        if (persistentSession.data) {
-            $deviceSessions.get().refetch()
-        } else {
-            $deviceSessions.set({
-                ...$deviceSessions.get(),
-                data: null,
-                isPending: false,
-                isRefetching: false,
-                error: null
-            })
+            const deviceSessions = $deviceSessions.get()
+
+            if (data) {
+                deviceSessions.refetch()
+            } else {
+                $deviceSessions.set({
+                    ...deviceSessions,
+                    data: null,
+                    isPending: false,
+                    isRefetching: false,
+                    error: null
+                })
+            }
         }
-    })
+    )
 
     const checkActiveSession = () => {
         const persistentSession = $persistentSession.get()
-        if (persistentSession.optimistic && persistentSession.data) {
-            $authClient
-                .get()
-                ?.multiSession.setActive({
-                    sessionToken: persistentSession.data.session.token
-                })
-                .then((result) => {
-                    if (result.error) return
+        if (!persistentSession.optimistic || !persistentSession.data) return
 
-                    $persistentSession.get().refetch()
-                })
-        }
+        const authClient = $authClient.get()
+        if (!authClient) return
+
+        authClient.multiSession
+            .setActive({
+                sessionToken: persistentSession.data.session.token
+            })
+            .then((result) => {
+                if (result.error) return
+
+                persistentSession.refetch()
+            })
     }
 
     checkActiveSession()
@@ -45,7 +46,7 @@ export function subscribeDeviceSessions() {
     window.addEventListener("online", checkActiveSession)
 
     return () => {
-        window.removeEventListener("online", checkActiveSession)
         unsubscribe()
+        window.removeEventListener("online", checkActiveSession)
     }
 }

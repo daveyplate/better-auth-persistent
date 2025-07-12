@@ -20,43 +20,41 @@ export const $deviceSessions = persistentAtom<DeviceSessionsResult>(
         encode: SuperJSON.stringify,
         decode: (value) => {
             const parsed = SuperJSON.parse(value) as DeviceSessionsResult
-
-            parsed.refetch = async () => {
-                const authClient = $authClient.get()
-
-                if (!authClient) {
-                    console.warn("$authClient not found")
-                    return
-                }
-
-                $deviceSessions.set({
-                    ...$deviceSessions.get(),
-                    isRefetching: true
-                })
-
-                const result =
-                    await authClient.multiSession.listDeviceSessions()
-
-                if (result.error) {
-                    $deviceSessions.set({
-                        ...$deviceSessions.get(),
-                        data: null,
-                        isRefetching: false,
-                        isPending: false,
-                        error: result.error
-                    })
-                } else {
-                    $deviceSessions.set({
-                        ...$deviceSessions.get(),
-                        data: result.data,
-                        isRefetching: false,
-                        isPending: false,
-                        error: null
-                    })
-                }
-            }
-
+            parsed.refetch = refetchDeviceSessions
             return parsed
         }
     }
 )
+
+const refetchDeviceSessions = async () => {
+    const authClient = $authClient.get()
+
+    if (!authClient) {
+        console.warn("$authClient not found")
+        return
+    }
+
+    $deviceSessions.set({
+        ...$deviceSessions.get(),
+        isRefetching: true
+    })
+
+    const result = await authClient.multiSession.listDeviceSessions()
+
+    if (result.error) {
+        $deviceSessions.set({
+            ...$deviceSessions.get(),
+            isRefetching: false,
+            isPending: false,
+            error: result.error
+        })
+    } else {
+        $deviceSessions.set({
+            ...$deviceSessions.get(),
+            data: result.data,
+            isRefetching: false,
+            isPending: false,
+            error: null
+        })
+    }
+}

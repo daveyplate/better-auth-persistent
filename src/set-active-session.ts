@@ -9,9 +9,7 @@ export async function setActiveSession({
 }) {
     const deviceSessions = $deviceSessions.get()
 
-    if (!deviceSessions.data) return
-
-    const session = deviceSessions.data.find(
+    const session = deviceSessions.data?.find(
         (session) => session.session.token === sessionToken
     )
 

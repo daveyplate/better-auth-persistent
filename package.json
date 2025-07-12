@@ -26,11 +26,14 @@
     "license": "MIT",
     "devDependencies": {
         "@better-fetch/fetch": "^1.1.18",
+        "@biomejs/biome": "^2.1.1",
+        "@nanostores/react": "^1.0.0",
         "@types/node": "^24.0.13",
         "@types/react": "^19.1.8",
         "@types/react-dom": "^19.1.6",
         "better-auth": "^1.2.12",
         "esbuild-plugin-preserve-directives": "^0.0.11",
+        "nanostores": "^1.0.1",
         "react": "^19.1.0",
         "react-dom": "^19.1.0",
         "tsc-watch": "^7.1.1",
@@ -41,16 +44,15 @@
     },
     "peerDependencies": {
         "@better-fetch/fetch": ">=1.1.18",
+        "@nanostores/react": ">=1.0.0",
         "better-auth": ">=1.2.8",
+        "nanostores": ">=1.0.0",
         "react": ">=18.0.0",
         "react-dom": ">=18.0.0"
     },
     "packageManager": "pnpm@10.8.1",
     "dependencies": {
-        "@biomejs/biome": "^2.1.1",
         "@nanostores/persistent": "^1.1.0",
-        "@nanostores/react": "^1.0.0",
-        "nanostores": "^1.0.1",
         "superjson": "^2.2.2"
     }
 }

@@ -2,6 +2,7 @@ import type { BetterFetchError } from "@better-fetch/fetch"
 import { persistentAtom } from "@nanostores/persistent"
 import type { Session, User } from "better-auth"
 import SuperJSON from "superjson"
+import { emptyResult } from "../empty-result"
 import { $authClient } from "./auth-client"
 
 type PersistentSessionResult = {
@@ -9,19 +10,13 @@ type PersistentSessionResult = {
     isPending: boolean
     isRefetching: boolean
     optimistic?: boolean
-    error: BetterFetchError | null
+    error: BetterFetchError["error"] | null
     refetch: () => Promise<void>
 }
 
 export const $persistentSession = persistentAtom<PersistentSessionResult>(
     "session",
-    {
-        data: null,
-        isPending: false,
-        isRefetching: false,
-        error: null,
-        refetch: async () => {}
-    },
+    { ...emptyResult, isPending: false },
     {
         encode: SuperJSON.stringify,
         decode: (value) => {
@@ -48,7 +43,7 @@ export const $persistentSession = persistentAtom<PersistentSessionResult>(
                         data: null,
                         isRefetching: false,
                         isPending: false,
-                        error: result.error as BetterFetchError
+                        error: result.error
                     })
                 } else {
                     $persistentSession.set({
